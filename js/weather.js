@@ -8,33 +8,33 @@ function onGeoOk(position) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            // const cityNameContainer = document.querySelector(
-            //     "#weather span:first-child"
-            // );
-            // const weatherContainer = document.querySelector(
-            //     "#weather span:nth-child(2)"
-            // );
-            const tempContainer = document.querySelector(
+            const cityNameContainer = document.querySelector(
                 "#weather span:first-child"
+            );
+            const weatherContainer = document.querySelector(
+                "#weather span:nth-child(3)"
+            );
+            const tempContainer = document.querySelector(
+                "#weather span:nth-child(5)"
             );
             const humidityContainer = document.querySelector(
                 "#weather span:last-child"
             );
 
-            // const name = "이름: " + data.name;
-            // const weather = "날씨:" + data.weather[0].main;
-            const temp = "온도: " + Math.round(data.main.temp) + "°C";
-            const humidity = "습도:" + Math.round(data.main.humidity) + "%";
+            const name = data.name;
+            const weather = "Weather: " + data.weather[0].main;
+            const temp = "Temp: " + Math.round(data.main.temp) + "°C";
+            const humidity = "Humid:" + Math.round(data.main.humidity) + "%";
 
-            // cityNameContainer.innerText = name;
-            // weatherContainer.innerText = weather;
+            cityNameContainer.innerText = name;
+            weatherContainer.innerText = weather;
             tempContainer.innerText = temp;
             humidityContainer.innerText = humidity;
         });
 }
 
 function onGeoError() {
-    alert("위치를 불러올수 없습니다.");
+    alert("Can't bring the location.");
 }
 
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
